@@ -7,7 +7,7 @@ module.exports =(_,argv)=>({
     publicPath:
       argv.mode === "development"
         ? "http://localhost:8081/"
-        : "https://wp5-react-federated-host.vercel.app/",
+        : "https://wp5-react-federated-consumer.vercel.app/",
   },
 
   resolve: {
