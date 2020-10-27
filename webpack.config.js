@@ -2,7 +2,9 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
 const deps = require("./package.json").dependencies;
-module.exports =(_,argv)=>({
+const localRemotes = (process.env.LOCAL_REMOTES || "").split(",");
+console.log(localRemotes);
+module.exports = (_, argv) => ({
   output: {
     publicPath:
       argv.mode === "development"
@@ -46,7 +48,9 @@ module.exports =(_,argv)=>({
       name: "consumer",
       filename: "remoteEntry.js",
       remotes: {
-        host: "host@https://wp5-react-federated-host.vercel.app/remoteEntry.js",
+        host: localRemotes.includes("host")
+          ? "host@http://localhost:8080/remoteEntry.js"
+          : "host@https://wp5-react-federated-host.vercel.app/remoteEntry.js",
       },
       exposes: {},
       shared: {
