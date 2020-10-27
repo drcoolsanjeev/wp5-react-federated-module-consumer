@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import "./index.css";
+import DogWidget from "host/DogWidget";
 
-const App = () => <div>Hi there, I'm React from Webpack 5.</div>;
+const App = () => <div><h2>Consumer!!!!!!!!</h2><br /><DogWidget /></div>;
 
 ReactDOM.render(<App />, document.getElementById("app"));
